@@ -1,0 +1,40 @@
+body {
+  background: red;
+  color: white;
+  text-align: center;
+}
+.warning {
+  font-size: 30px;
+}
+
+.horizontal-line {
+  height: 1px;
+  width: 70%;
+  margin: auto;
+  background: #b5b5b5;
+  margin-top: 2px;
+}
+
+.maybe {
+  font-size: 6px;
+}
+
+#sitesList {
+  margin: auto;
+  font-size: 25px;
+  align-content: center;
+  justify-content: center;
+  display: table;
+}
+
+tr {
+  text-align: center;
+  display: table-row;
+}
+
+#timer {
+  font-size: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 100px;
+}

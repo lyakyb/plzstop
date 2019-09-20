@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link rel="stylesheet" href="../styles/popup.css">
+    </head>
+    <body>
+      <div class="sites">
+        <form>
+          <input type="text" id="siteName">
+        </form>
+        <button class="addSite">Add</button>
+      </div>
+      <h3>Blocking Site List</h3>
+      <div class="horizontal-line"></div>
+      <div id="sitesList"></div>
+      <div class="control">
+        <form>
+            <input type="text" id="hourVal">
+            <label>Hours</label>
+            <input type="text" id="minVal">
+            <label>Minutes</label>
+        </form>
+        <button class="start" id="start"></button>
+      </div>
+      <p id="warning">You CANNOT disable it once you start</p>
+      <script src="../src/popup.js"></script>
+    </body>
+  </html>
