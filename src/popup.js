@@ -71,9 +71,14 @@ document.addEventListener(
     }
 
     if (event.target.matches(".addSite")) {
+      if (!siteNameField.value || siteNameField.value.length < 0) {
+        alert("You cannot add an empty domain.");
+        return;
+      }
+
       chrome.storage.sync.get(["sites"], function(data) {
         if (data.sites.some(site => site === siteNameField.value)) {
-          alert("site already exists in the list!");
+          alert("Site already exists in the list!");
           siteNameField.value = "";
           return;
         }
