@@ -36,9 +36,7 @@ function updateTableWithList(siteList) {
 }
 
 function updateTimeWithDelta(delta) {
-  var hours = Math.floor(
-    (delta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  );
+  var hours = Math.floor((delta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   var minutes = Math.floor((delta % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((delta % (1000 * 60)) / 1000);
 
@@ -77,13 +75,21 @@ document.addEventListener(
       }
 
       chrome.storage.sync.get(["sites"], function(data) {
-        if (data.sites.some(site => site === siteNameField.value)) {
+        const exp = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/|www|.*:\/\/)/gmi
+        const regex = new RegExp(exp);
+        const newSite = siteNameField.value
+        if (newSite.match(regex)) {
+          alert("Invalid format. Please type in ONLY the host doamin you wish to block.\n eg. 'https://www.example.com' -> 'example.com'")
+          return;
+        }
+
+        if (data.sites.some(site => site === newSite)) {
           alert("Site already exists in the list!");
           siteNameField.value = "";
           return;
         }
 
-        let newSites = [].concat(data.sites, siteNameField.value);
+        let newSites = [].concat(data.sites, newSite);
         chrome.storage.sync.set({ sites: newSites }, function() {
           updateTableWithList(newSites);
           siteNameField.value = "";
@@ -94,13 +100,13 @@ document.addEventListener(
     if (event.target.matches(".start")) {
       chrome.storage.sync.get(["stopEnabled", "sites"], function(data) {
         if (data.stopEnabled) return;
-        
+
         let until = Math.floor(
           Date.now() +
-          3600 * 1000 * hourField.value +
-          60 * 1000 * minField.value
-          );
-        updateTimeWithDelta(until-Date.now());
+            3600 * 1000 * hourField.value +
+            60 * 1000 * minField.value
+        );
+        updateTimeWithDelta(until - Date.now());
         endingTime = until;
         startBtn.style.backgroundColor = "red";
         chrome.storage.sync.set(
@@ -116,10 +122,9 @@ document.addEventListener(
   false
 );
 
-
 chrome.storage.sync.get(["sites", "stopEnabled", "endingTime"], function(data) {
   updateTableWithList(data.sites);
-  updateTimeWithDelta(data.endingTime-Date.now());
+  updateTimeWithDelta(data.endingTime - Date.now());
   if (data.stopEnabled) {
     timeInterval = setInterval(countDownTimer, 1000);
     startBtn.disabled = true;
