@@ -8,6 +8,10 @@ chrome.runtime.onInstalled.addListener(function() {
 
 chrome.storage.sync.get(["sites", "stopEnabled", "endingTime"], function(data) {
   chrome.webNavigation.onBeforeNavigate.addListener(function(details) {
+    if (details.frameId !== 0) {
+      // only care about parent frame. i.e. ignore embedded site calls.
+      return;
+    }
     const url = new URL(details.url);
     chrome.storage.sync.get(["stopEnabled", "sites"], function(data) {
       const siteExists = data.sites.some(site => url.host.indexOf(site) !== -1);
