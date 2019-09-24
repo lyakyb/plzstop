@@ -1,6 +1,6 @@
 {
   "name": "Plzstop",
-  "version": "1.3",
+  "version": "1.4",
   "description": "Block yourself from visiting sites!",
   "background": {
     "scripts": ["./src/background.js"],
@@ -23,5 +23,5 @@
   },
   "permissions": ["webNavigation", "activeTab", "declarativeContent", "storage"],
   "manifest_version": 2,
-  "default_locale": "ko"
+  "default_locale": "en"
 }
