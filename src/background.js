@@ -22,7 +22,7 @@ chrome.storage.sync.get(["sites", "stopEnabled", "endingTime"], function(data) {
   });
 
   if (data.stopEnabled && data.endingTime - Date.now() < 0) {
-    chrome.storage.sync.set({ stopEnabled: false }, function() {});
+    disable();
   }
 });
 
@@ -30,13 +30,13 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
   for (var key in changes) {
     var storageChange = changes[key];
     if (key === "stopEnabled" && storageChange.newValue) {
-      chrome.storage.sync.get(['endingTime'], function(data) {
-        setTimeout(disable, data.endingTime-Date.now());
-      })
+      chrome.storage.sync.get(["endingTime"], function(data) {
+        setTimeout(disable, data.endingTime - Date.now());
+      });
     }
   }
 });
 
 function disable() {
-  chrome.storage.sync.set({stopEnabled: false},function(){});
+  chrome.storage.sync.set({ stopEnabled: false }, function() {});
 }
