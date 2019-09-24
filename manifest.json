@@ -1,6 +1,6 @@
 {
   "name": "Plzstop",
-  "version": "1.1",
+  "version": "1.2",
   "description": "Block yourself from visiting sites!",
   "background": {
     "scripts": ["./src/background.js"],

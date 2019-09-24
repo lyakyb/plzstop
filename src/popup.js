@@ -61,6 +61,44 @@ function removeSite(button) {
   });
 }
 
+function addSite() {
+  if (!siteNameField.value || siteNameField.value.length < 0) {
+    alert("You cannot add an empty domain.");
+    return;
+  }
+
+  chrome.storage.sync.get(["sites"], function(data) {
+    const exp = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/|www|.*:\/\/)/gim;
+    const regex = new RegExp(exp);
+    const newSite = siteNameField.value;
+    if (newSite.match(regex)) {
+      alert(
+        "Invalid format. Please type in ONLY the host doamin you wish to block.\n eg. 'https://www.example.com' -> 'example.com'"
+      );
+      return;
+    }
+
+    if (data.sites.some(site => site === newSite)) {
+      alert("Site already exists in the list!");
+      siteNameField.value = "";
+      return;
+    }
+
+    let newSites = [].concat(data.sites, newSite);
+    chrome.storage.sync.set({ sites: newSites }, function() {
+      updateTableWithList(newSites);
+      siteNameField.value = "";
+    });
+  });
+}
+
+siteNameField.addEventListener("keydown", function(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    addSite();
+  }
+});
+
 document.addEventListener(
   "click",
   function(event) {
@@ -69,32 +107,7 @@ document.addEventListener(
     }
 
     if (event.target.matches(".addSite")) {
-      if (!siteNameField.value || siteNameField.value.length < 0) {
-        alert("You cannot add an empty domain.");
-        return;
-      }
-
-      chrome.storage.sync.get(["sites"], function(data) {
-        const exp = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/|www|.*:\/\/)/gmi
-        const regex = new RegExp(exp);
-        const newSite = siteNameField.value
-        if (newSite.match(regex)) {
-          alert("Invalid format. Please type in ONLY the host doamin you wish to block.\n eg. 'https://www.example.com' -> 'example.com'")
-          return;
-        }
-
-        if (data.sites.some(site => site === newSite)) {
-          alert("Site already exists in the list!");
-          siteNameField.value = "";
-          return;
-        }
-
-        let newSites = [].concat(data.sites, newSite);
-        chrome.storage.sync.set({ sites: newSites }, function() {
-          updateTableWithList(newSites);
-          siteNameField.value = "";
-        });
-      });
+      addSite();
     }
 
     if (event.target.matches(".start")) {
