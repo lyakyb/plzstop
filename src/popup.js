@@ -9,6 +9,20 @@ let timeInterval = null;
 hourField.value = 1;
 minField.value = 0;
 
+// Update label
+const addSiteBtn = document.getElementById('addSite');
+const hourLabel = document.getElementById('hours');
+const minuteLabel = document.getElementById('mins');
+const warningLabel = document.getElementById('warning');
+const blokcingSitesLabel = document.getElementById('blockingSites');
+
+addSiteBtn.value = chrome.i18n.getMessage("add");
+hourLabel.textContent = chrome.i18n.getMessage("hours");
+minuteLabel.textContent = chrome.i18n.getMessage("mins");
+warningLabel.textContent = chrome.i18n.getMessage("warning");
+blokcingSitesLabel.textContent = chrome.i18n.getMessage("blockingSites");
+
+
 function updateTableWithList(siteList) {
   var table = document.createElement("TABLE");
   for (var i = 0; i < siteList.length; i++) {

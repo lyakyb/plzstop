@@ -1,0 +1,38 @@
+{
+  "stop": {
+    "message": "STOP!"
+  },
+  "goBack": {
+    "message": "GO BACK TO YOUR PRIORITIES"
+  },
+  "comeBack": {
+    "message": "... and maybe come back in"
+  },
+  "calculating": {
+    "message": "Calculating time left"
+  },
+  "youBlocked": {
+    "message": "Here is the list of sites YOU set to block yourself from."
+  },
+  "blockingSites": {
+    "message": "Blocking Site List"
+  },
+  "add": {
+    "message": "Add"
+  },
+  "hours": {
+    "message": "Hours"
+  },
+  "mins": {
+    "message": "Minutes"
+  },
+  "warning": {
+    "message": "You CANNOT disable it once you start"
+  },
+  "freeNow": {
+    "message": "YOU ARE FREE NOW!"
+  },
+  "accessNow": {
+    "message": "You can now access any websites :)"
+  }
+}

@@ -22,5 +22,6 @@
     "128": "images/plzstop128.png"
   },
   "permissions": ["webNavigation", "activeTab", "declarativeContent", "storage"],
-  "manifest_version": 2
+  "manifest_version": 2,
+  "default_locale": "ko"
 }

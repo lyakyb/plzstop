@@ -1,0 +1,38 @@
+{
+  "stop": {
+    "message": "동작그만!"
+  },
+  "goBack": {
+    "message": "해야하는 일을 먼저 끝내세요"
+  },
+  "comeBack": {
+    "message": "... 그리고 아래 나오는 시간뒤에 돌아오세요"
+  },
+  "calculating": {
+    "message": "남은 시간 계산중"
+  },
+  "youBlocked": {
+    "message": "당신이 '직접' 차단한 목록입니다."
+  },
+  "blockingSites": {
+    "message": "차단된 사이트"
+  },
+  "add": {
+    "message": "추가"
+  },
+  "hours": {
+    "message": "시간"
+  },
+  "mins": {
+    "message": "분"
+  },
+  "warning": {
+    "message": "한번 시작하면 취소가 불가능합니다."
+  },
+  "freeNow": {
+    "message": "도비는 자유로운 집요정이에요!"
+  },
+  "accessNow": {
+    "message": "이제 마음껏 차단됬던 사이트들을 방문하세요 :)"
+  }
+}

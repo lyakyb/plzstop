@@ -1,6 +1,18 @@
-let timeLabel = document.getElementById('timer');
 let timeInterval = null;
 let endingTime = 0;
+
+// Update lables
+const timeLabel = document.getElementById('timer');
+const stopLabel = document.getElementById('stop');
+const goBackLabel = document.getElementById('goBack');
+const comeBackLabel = document.getElementById('comeBack');
+const youBlockedLabel = document.getElementById('youBlocked');
+
+timeLabel.textContent = chrome.i18n.getMessage("calculating");
+stopLabel.textContent = chrome.i18n.getMessage("stop");
+goBackLabel.textContent = chrome.i18n.getMessage("goBack");
+comeBackLabel.textContent = chrome.i18n.getMessage("comeBack");
+youBlockedLabel.textContent = chrome.i18n.getMessage("youBlocked");
 
 function updateTableWithList(siteList) {
   var table = document.createElement("TABLE");
